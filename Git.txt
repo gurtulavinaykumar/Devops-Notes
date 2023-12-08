@@ -1,0 +1,205 @@
+================================================>GIT<==============================================
+==>git init   ==> this command create a local repo
+#.git folder will be available, which is your local repository.
+
+Working Area ==>  Staging area ==>  Local repository.
+
+============>Add the configuration parameters in git, which will later update author and email details in the git commit history
+#variables need to be set
+user.name 
+user.email
+==>git config --global user.name vinaykumar
+==>git config --global user.email admin@gmail.com
+
+============>Difference between global and system 
+#System: Applies to all users on the system.
+#Global: Applies to a specific user on the system.
+==>git config --system user.name agastya
+==>git config --system user.email admin@gmail.com
+
+#List the configurations:
+==>git config --list
+
+#Unset git configuration
+git config --global --unset user.name
+git config --global --unset user.email
+
+==>git log  ==> To check the log with author and email 
+==>git reset --hard <commit ID> ==> Is used to change the commit head 
+
+============>Add file from working area to staging area
+==>git add git add <filename> <filename2> ==> To add files
+==>git add . or git add --all ==> Add all files
+==>git add *.java *.php ==> All java and php files
+==>git rm --cached <file>..." to unstage from staging area 
+
+==>git restore <file> ==> to discard changes in working directory and also unstage a non-commited staged file.
+
+============>Commit files from staging area and modified files from working area
+==> git commit -m "commit message" ==>To commit a file.
+==> git commit -a -m "commit message" ==>To commit a modified file and staged file.
+
+============>To know the changes between committed and modified file in working area.
+==>git diff <filename>
+
+============>git Ignore
+==>vi .gitignore  ==> git ignore file is created add all ignore files and directory are added to this file one line one file or directoryname.
+#git ifnore is used for new file not committed file.
+Example:
+Test1 ==> Directories are also ignored
+files.html
+files.log
+files.xml
+#for multiple files 
+*.log  ==> all log files are ignored
+*.xml
+*.war
+
+============>git stash
+#stash is used to move changes done on  committed file.
+#you can see the stash in .git==>refs==>stash folder
+#stashed file is available for 90days
+==> git stash ==> To do git stash
+==> git stash list ==> To see all stash files
+==> git stash --list ==> To see all stash options.
+stash@{0}: WIP on master: 054a4c4 Modified files are committed
+==>git show stash@{0} ==> To see all stashed files.
+==>git stash pop stash@{0} ==> To remove stash and modified changes are back to the file
+
+#####difference between gitignore and stash 
+#Stash is used for modified file is in working area
+#ignore is used for new files which is not committed.
+
+============>git log
+==>git reset ==> Used to delete all logs #Don't use this command anytime
+==>git log --oneline ==> logs are shown in oneline 
+==>git reset --hard <commit ID> ==> Is used to change the commit head to previous commit id
+-->git log --graph --all -- index1.html ==> See commits of a particular file:
+==>git log master..feature1--oneline
+
+
+============>git branch
+#branch is created with the copy of master branch
+#master branch cannot be deleted but rename it
+#branch is merged to the master branch and delete the branch if it is not required
+#Auto merge is done in central repository cannot done in local repo.
+
+==>git branch ==> To see all branches and branch with * indictated current working directory
+==>git branch <filename> ==> To create new branch
+==>git checkout <branch name> ==. To switch branch
+#Head shows you in which branch
+#Any commit is made is branch log is created in branch only cannot reflect in master
+#All commits are made in master is reflected in feature branch also
+==>git checkout -b feature2  ==>Create a new branch and switch to the branch also
+==>git merge feature1 master  ==>feature1 is merged to master
+#switch to destination branch before merge
+#All logs in the feature1 is reflects in the master after merge
+==>git branch -m feature1 bugfix ==>Rename branch name
+==>git branch -d bugfix  ==> To delete the branch
+==>git checkout -b 0304294 ==>Recover the deleted branch
+Check which branches are merged to master
+==>git branch -a --merged master  ==>Check which branches are merged to master
+==>git branch -a --no-merged master  ==>Check which branches are not merged to master
+
+
+
+============>GitHub Account
+#Create github repository and copy http url
+
+============>git remote 
+==>git remote add origin https://github.com/Sonal0409/myproject19Apr.git  ==>adding remote repository to local repository
+
+==>git remote -v ==>To check remote repository connections
+
+==>git remote rm origin ==> Remove remote repository (origin)
+
+==>git push origin master ==>Push data from local to remote
+
+username : github
+password: token
+
+==>git pull origin master ==>  pull will fecth changes and merge them with LR and WD
+
+==>git clone https://github.com/Sonal0409/myproject19Apr.git  ==>  Clone a remote repository to local machine
+
+============>Forking ==> Copying other repository from one github account to other github account.
+#fork syrc is used to update fork.
+
+==============>Rebase
+~merging does not re-organise the commit history
+#first it will show commits all the master then feature
+#Rebase is done when merging the master branch to feature branch
+git rebase master ==> switch to feature1 branch and rebase 
+
+
+6. Rebase merging strategy in GIT (rewind the commit history)
+
+# git branch
+
+you should be on the master branch
+
+Now create a new branch
+
+# git branch feature1
+
+On the master branch create 2  new commits
+
+example of my log on master branch
+
+8bce083 (HEAD -> master) on master branch 2
+daa1204 on master branch1
+ea61e8e (feature1) added modifications
+0a733ed adding file index1.html
+
+
+Now switch to feature branch and create 2 new commits
+
+
+example of my log on master branch
+
+9981946 (HEAD -> feature1) on branch
+156dc12 done in feature branch
+ea61e8e added modifications
+0a733ed adding file index1.html
+
+
+I want to rebase - re organise the base of my feature branch
+
+Make sure you are on feature branch
+
+# git rebase master
+
+
+The commit history will be as such:
+
+41f5d79 (HEAD -> feature1) on branch
+9469e15 done in feature branch
+8bce083 (master) on master branch 2
+daa1204 on master branch1
+ea61e8e added modifications
+0a733ed adding file index1.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
